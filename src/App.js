@@ -1,53 +1,43 @@
-import logo from "./illumination-pro_wht_logo.png";
-import Instruments from "./components/Instruments";
-//import "./App.css";
+import React, { useEffect } from "react";
+import "./main.css";
+import Nav from "./components/Nav";
+import Hero from "./components/Hero";
+import Features from "./components/Features";
+import Built from "./components/Built";
 import BarChart from "./components/BarChart";
-import "./output.css";
+import LineChart from "./components/LineChart";
+import Industry from "./components/Industry";
+import Deamle from "./components/Deamle";
+import Stream from "./components/Stream";
+import FaqHero from "./components/FaqHero";
+import Faqs from "./components/Faqs";
+import Footer from "./components/Footer";
 
 function App() {
+  useEffect(() => {
+    window.Webflow && window.Webflow.destroy();
+    window.Webflow && window.Webflow.ready();
+    window.Webflow && window.Webflow.require("ix2").init();
+    document.dispatchEvent(new Event("readystatechange"));
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <div class="h-full">
-          <div class="blue-header">
-            <div>
-              <img src={logo} width="220" alt="Illumination PRO" class="logo" />
-            </div>
-            <a href="#" class="wht-text">
-              View All Patients
-            </a>
-          </div>
-
-          <div class="img-bottom-burst notp">
-            <div class="qa-container">
-              <div class="title-gr pt-2p">
-                <div>&nbsp;John Elway Health Summary</div>
-              </div>
-            </div>
-
-            <div class="flex-1" id="instruments">
-              <div class="header-provider mb-2p">
-                <span class="text-blue-100">
-                  Latest Disease Activity Summary
-                </span>
-              </div>
-              <Instruments />
-              <div class="border-t pt-10px">
-                <strong>Description:&nbsp;</strong>Asssessment of daily living
-                function related to knee problems
-              </div>
-              <div class="header-provider">
-                <span class="text-blue-100">Disease Activity Summary</span>
-              </div>
-              <div class="row-multi h w-full pl-2p">
-                <div class="mt-mr2p">
-                  <BarChart />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div>
+      <Nav />
+      <section className="hero">
+        <Hero />
+      </section>
+      <Features />
+      <Built />
+      <Industry />
+      <section className="section smoke">
+        <Deamle />
+      </section>
+      <section className="section">
+        <Stream />
+      </section>
+      <FaqHero />
+      <Faqs />
+      <Footer />
     </div>
   );
 }

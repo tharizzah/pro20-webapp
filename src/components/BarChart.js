@@ -1,43 +1,66 @@
 import React from "react";
+import { Bar } from "react-chartjs-2";
 import {
-  Chart,
+  Chart as ChartJS,
+  BarElement,
   CategoryScale,
-  ArcElement,
-  LineController,
-  LineElement,
-  PointElement,
   LinearScale,
-  Title
+  Tooltip,
+  Legend
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-Chart.register(
-  ArcElement,
-  CategoryScale,
-  LineController,
-  LineElement,
-  PointElement,
-  LinearScale,
-  Title
-);
+// Register Chart.js components
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const BarChart = () => {
+  // Chart data and configuration
+  const data = {
+    labels: ["Apple", "Google", "Web", "Digital Store", "DML", "Artist"],
+    datasets: [
+      {
+        label: "Marketplaces & Splits",
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          "rgba(82, 95, 148, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(236, 112, 134, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(41, 48, 75, 0.2)"
+        ],
+        borderColor: [
+          "rgba(82, 95, 148, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(236, 112, 134, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(41, 48, 75, 1)"
+        ],
+        borderWidth: 1
+      }
+    ]
+  };
+
+  const options = {
+    plugins: {
+      legend: {
+        display: true,
+        position: "top"
+      },
+      tooltip: {
+        enabled: true
+      }
+    },
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
   return (
-    <div>
-      <Line
-        data={{
-          labels: ["red", "blue", "pink", "Purple", "Black", "Yellow", "Green"],
-          datasets: [
-            {
-              label: "# of votes",
-              data: [12, 19, 3, 20, 5, 7, 1],
-              borderColor: "rgb(53, 162, 235)",
-              backgroundColor: "rgba(53, 162, 235, 0.5)"
-            }
-          ]
-        }}
-        height={200}
-        width={900}
-      />
+    <div style={{ width: "45%" }}>
+      <Bar data={data} options={options} />
     </div>
   );
 };
